@@ -1,0 +1,22 @@
+{
+  "name": "workspace",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "aos": "^2.3.4",
+    "axios": "^1.7.9",
+    "mongodb": "^6.13.0",
+    "mongoose": "^8.9.6",
+    "next": "15.1.6",
+    "r": "^0.0.5",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-markdown": "^9.0.3"
+  }
+}

@@ -1,66 +1,220 @@
 "use client";
 
-import { RiBarChartHorizontalLine } from "react-icons/ri";
-import { GoScreenFull } from "react-icons/go";
-import { BiExitFullscreen } from "react-icons/bi";
-import { useState } from "react";
-import { useSession } from "next-auth/react";
+import Image from "next/image";
+import Link from "next/link";
+import { IoMoonSharp, IoSearch, IoSearchSharp } from "react-icons/io5";
+import { FaBars } from "react-icons/fa";
+import { FaXmark } from "react-icons/fa6";
+import { LuSun } from "react-icons/lu";
+import { useEffect, useState } from "react";
+import useFetchData from "@/hooks/useFetchData";
 
 export default function Header() {
-  const { data: session } = useSession();
-  const [isFullscreen, setisFullscreen] = useState(false);
+  //search open and close function
+  const [searchOpen, setSearchOpen] = useState(false);
 
-  const toggleFullscreen = () => {
-    if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen().then(() => {
-        setisFullscreen(true);
-      });
-    } else {
-      if (document.exitFullscreen) {
-        document.exitFullscreen().then(() => {
-          setisFullscreen(false);
-        });
-      }
-    }
+  //open search bar
+  const openSearch = () => {
+    setSearchOpen(!searchOpen);
   };
+  //close search bar
+  const closeSearch = () => {
+    setSearchOpen(false);
+  };
+
+  //aside bar for mobile devices
+  const [aside, setAside] = useState(false);
+
+  const asideOpen = () => {
+    setAside(true);
+  };
+
+  const asideClose = () => {
+    setAside(false);
+  };
+
+  //close aside when link is clicked
+  const handleLinkClick = () => {
+    setAside(false);
+  };
+
+  //dark mode
+  const [darkMode, setDarkMode] = useState(true);
+
+  useEffect(() => {
+    const isDarkmode = localStorage.getItem("darkMode") == "true";
+    setDarkMode(isDarkmode);
+  }, []);
+
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.add("dark");
+      localStorage.setItem("darkMode", true);
+    } else {
+      document.body.classList.remove("dark");
+      localStorage.setItem("darkMode", false);
+    }
+  }, [darkMode]);
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
+  //search data fetch
+  const { alldata, loading } = useFetchData("/api/getblog");
+
+  //filtering publish blogs
+  const publishedBlogs = alldata.filter((ab) => ab.status === "publish");
+
+  const [searchQuery, setSearchQuery] = useState("");
+  // filter based on search query from title
+  const filteredBlogs =
+    searchQuery.trim() === ""
+      ? publishedBlogs
+      : publishedBlogs.filter((blog) =>
+          blog.title.toLowerCase().includes(searchQuery.toLowerCase())
+        );
 
   return (
     <>
-      <header className="header flex flex-sb">
-        <div className="logo flex gap-2">
-          <h1>ADMIN</h1>
-          <div className="headerham flex flex-center">
-            <RiBarChartHorizontalLine />
+      <div className="header_sec">
+        <div className="container header">
+          <div className="logo">
+            <Link href="/" className="flex">
+              <Image src="/img/logo.png" alt="Logo" width={40} height={40} />
+              <h1>Blog</h1>
+            </Link>
           </div>
-        </div>
-        <div className="rightnav flex gap-2">
-          <div onClick={toggleFullscreen}>
-            {isFullscreen ? <BiExitFullscreen /> : <GoScreenFull />}
-          </div>
-          <div className="notification">
-            <img
-              src="/img/notification.png"
-              alt="notification"
-              style={{ width: 30, height: 30 }}
+          <div className="searchbar">
+            <IoSearchSharp />
+            <input
+              onClick={openSearch}
+              type="search"
+              placeholder="Discover news, articles and more"
             />
           </div>
-          <div className="profilenav">
-            {session ? (
-              <img
-                src={session.user.image}
-                alt="user"
-                style={{ width: 30, height: 30 }}
-              />
-            ) : (
-              <img
-                src="/img/user.png"
-                alt="user"
-                style={{ width: 30, height: 30 }}
-              />
-            )}
+          <div className="nav_list_dark">
+            <ul>
+              <li>
+                <Link href="/">Home</Link>
+              </li>
+              <li>
+                <Link href="/about">About</Link>
+              </li>
+              <li>
+                <Link href="/contact">Contact</Link>
+              </li>
+            </ul>
+            {/* for mobile screens */}
+            <div className="navlist_mobile_ul">
+              <button onClick={toggleDarkMode}>
+                {darkMode ? <LuSun /> : <IoMoonSharp />}
+              </button>
+              <button onClick={openSearch}>
+                <IoSearch />
+              </button>
+              <button onClick={asideOpen}>
+                <FaBars />
+              </button>
+            </div>
+            <div className="darkmode">
+              <label className="switch">
+                <input
+                  type="checkbox"
+                  checked={darkMode}
+                  onChange={toggleDarkMode}
+                />
+                <span className="slider_header"></span>
+              </label>
+            </div>
           </div>
         </div>
-      </header>
+        <div className={`search_click ${searchOpen ? "open" : ""}`}>
+          <div className="searchab_input">
+            <IoSearchSharp />
+            <input
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              type="search"
+              placeholder="Discover news, articles and more"
+            />
+          </div>
+          <div className="search_data text-center">
+            {loading ? (
+              <div className="wh_100 flex flex-center mt-2 pb-5">
+                <div className="loader"></div>
+              </div>
+            ) : (
+              <>
+                {searchQuery ? (
+                  <>
+                    {filteredBlogs.slice(0, 3).map((blog) => {
+                      return (
+                        <div className="blog" key={blog._id}>
+                          <Link href={`/blog/${blog.slug}`}>
+                            <h3>{blog.slug}</h3>
+                          </Link>
+                          <p>
+                            Lorem ipshde heve eegydge ehgdfyew ewgewdgwg hwgwdhw
+                            jwfded jfewdvb ddvb ggewvgd
+                          </p>
+                        </div>
+                      );
+                    })}
+                  </>
+                ) : (
+                  <div>No search results</div>
+                )}
+              </>
+            )}
+          </div>
+          <div className="exit_search" onClick={closeSearch}>
+            <div>
+              <FaXmark />
+            </div>
+            <h4>ESC</h4>
+          </div>
+        </div>
+
+        {/* mobile navlist */}
+        <div className={aside ? `navlist_mobile open` : "navlist_mobile"}>
+          <div className="navlist_m_title flex flex-sb">
+            <h1>Shoepedi Blogs</h1>
+            <button onClick={asideClose}>
+              <FaXmark />
+            </button>
+          </div>
+          <hr />
+          <h3 className="mt-3">Main Menu</h3>
+          <ul onClick={handleLinkClick}>
+            <li>
+              <Link href="/">Home</Link>
+            </li>
+            <li>
+              <Link href="/about">About</Link>
+            </li>
+            <li>
+              <Link href="/contact">Contact</Link>
+            </li>
+          </ul>
+          <hr />
+          <h3 className="mt-3">Topics</h3>
+          <ul onClick={handleLinkClick}>
+            <li>
+              <Link href="/topics/html">Html</Link>
+            </li>
+            <li>
+              <Link href="/about">CSS</Link>
+            </li>
+            <li>
+              <Link href="/contact">React</Link>
+            </li>
+            <li>
+              <Link href="/contact">Database</Link>
+            </li>
+          </ul>
+        </div>
+      </div>
     </>
   );
 }

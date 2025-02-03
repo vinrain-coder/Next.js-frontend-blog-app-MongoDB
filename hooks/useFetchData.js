@@ -8,11 +8,10 @@ function useFetchData(apiEndPoint) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Do nothing if there's no endpoint
     if (!apiEndPoint) return;
 
     const fetchAllData = async () => {
-      setLoading(true); // Set loading to true when starting the fetch
+      setLoading(true);
       try {
         const res = await axios.get(apiEndPoint);
         const alldata = res.data;
@@ -20,12 +19,12 @@ function useFetchData(apiEndPoint) {
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
-        setLoading(false); // Set loading to false when done
+        setLoading(false);
       }
     };
 
     fetchAllData();
-  }, [apiEndPoint]); // Dependency on apiEndPoint to refetch when it changes
+  }, [apiEndPoint]);
 
   return { alldata, loading };
 }

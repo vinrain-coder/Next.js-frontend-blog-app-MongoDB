@@ -19,7 +19,7 @@ export default function TopicsPage() {
 
     const fetchBlogData = async () => {
       try {
-        const res = await axios.get(`/api/getblog?blogtags=${tags}`);
+        const res = await axios.get(`/api/getblog?tags=${tags}`);
         setBlog(res.data || []);
       } catch (error) {
         console.error("Error fetching blog data", error);

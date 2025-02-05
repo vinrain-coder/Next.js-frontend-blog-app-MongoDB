@@ -17,14 +17,7 @@ export default async function handle(req, res) {
       res.json(cate.reverse());
     } else if (req.query?.tags) {
       // fetch blog by tags
-      const tagsArray = Array.isArray(req.query.tags)
-        ? req.query.tags
-        : req.query.tags.split(","); // Split tags if passed as a comma-separated string
-
-      // Find blogs where any of the tags match
-      const tag = await Blog.find({
-        tags: { $in: tagsArray },
-      });
+      const tag = await Blog.find({ tags: req.query.tags });
       res.json(tag.reverse());
     } else if (req.query?.slug) {
       // fetch blog by slug
@@ -36,6 +29,6 @@ export default async function handle(req, res) {
       res.json(blogs.reverse());
     }
   } else {
-    res.status(405).json({ message: "Method not allowed" });
+    res.status(405).json({ message: "Message not allowed" });
   }
-}
+}    

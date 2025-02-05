@@ -104,10 +104,7 @@ export default function Home() {
                         </Link>
                         <Link href={`/blog/${blog.slug}`}>
                           <h3>{blog.title}</h3>
-                          <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit.
-                          </p>
+
                           <div className="blogauthor flex gap-1">
                             <div className="blogaimg">
                               <img src="/img/logo.png" alt="Logo" />
@@ -246,16 +243,16 @@ export default function Home() {
                 <h4>Want to find out how i can resolve your problems?</h4>
                 <div className="social_talks flex flex-center gap-1 mt-2">
                   <div className="st_icon">
-                    <FaGithub/>
+                    <FaGithub />
                   </div>
                   <div className="st_icon">
-                    <FaGithub/>
+                    <FaGithub />
                   </div>
                   <div className="st_icon">
-                    <FaGithub/>
+                    <FaGithub />
                   </div>
                   <div className="st_icon">
-                    <FaGithub/>
+                    <FaGithub />
                   </div>
                 </div>
               </div>

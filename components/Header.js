@@ -150,15 +150,18 @@ export default function Header() {
                   <>
                     {filteredBlogs.slice(0, 3).map((blog) => {
                       return (
-                        <div className="blog" key={blog._id}>
-                          <Link href={`/blog/${blog.slug}`}>
-                            <h3>{blog.slug}</h3>
-                          </Link>
-                          <p>
-                            Lorem ipshde heve eegydge ehgdfyew ewgewdgwg hwgwdhw
-                            jwfded jfewdvb ddvb ggewvgd
-                          </p>
-                        </div>
+                        <Link
+                          className="blog"
+                          key={blog._id}
+                          href={`/blog/${blog.slug}`}
+                          onClick={closeSearch}
+                        >
+                          <div className="bloginfo">
+                            <div>
+                              <h3>{blog.slug}</h3>
+                            </div>
+                          </div>
+                        </Link>
                       );
                     })}
                   </>

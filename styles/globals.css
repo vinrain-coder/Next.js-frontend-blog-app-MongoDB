@@ -1511,7 +1511,7 @@ button {
 .slug_profile_img img {
   width: 100%;
   height: 100%;
-  margin-top: -10px;
+  margin-top: 30px;
   margin-left: 10px;
   object-fit: cover;
   border-bottom-right-radius: 50px;

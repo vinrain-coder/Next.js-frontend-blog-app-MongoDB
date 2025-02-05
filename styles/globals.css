@@ -39,7 +39,7 @@ body.dark {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #667eea;
+  background-color: rgb(255, 111, 0);
   border-radius: 50%;
   box-shadow: 0 5px 10px #5e75a4;
   color: #fff;
@@ -657,7 +657,7 @@ button {
 }
 
 .navlist_mobile_ul button:hover {
-  background-color: #667eea;
+  background-color: rgb(255, 111, 0);
   color: #fff;
 }
 
@@ -699,7 +699,7 @@ button {
 }
 
 .leftheader_info span {
-  color: #667eea;
+  color: rgb(255, 111, 0);
 }
 
 .leftheader_info h3 {
@@ -722,9 +722,9 @@ button {
 }
 
 .leftheader_info a:nth-child(1) button {
-  background-color: #667eea;
+  background-color: rgb(255, 111, 0);
   color: #fff;
-  border: 3px solid #667eea;
+  border: 3px solid rgb(255, 111, 0);
 }
 
 .leftheader_info a:nth-child(2) button {
@@ -1038,12 +1038,12 @@ button {
 }
 
 .blogpagination button:hover {
-  background-color: #667eea;
+  background-color: rgb(255, 111, 0);
   color: #fff;
 }
 
 .blogpagination button.active {
-  background-color: #667eea;
+  background-color: rgb(255, 111, 0);
   color: #fff;
 }
 
@@ -1124,7 +1124,7 @@ button {
 }
 
 .topics:hover .topics_svg {
-  background-color: #667eea;
+  background-color: rgb(255, 111, 0);
   color: #fff;
 }
 
@@ -1238,7 +1238,7 @@ button {
 }
 
 .st_icon:hover {
-  background-color: #667eea;
+  background-color: rgb(255, 111, 0);
 }
 
 /* ================================================== */
@@ -1258,7 +1258,7 @@ button {
 
 .footer_logo h2 {
   font-size: 30px;
-  color: #667eea;
+  color: rgb(255, 111, 0);
   margin-bottom: 1rem;
 }
 
@@ -1298,7 +1298,7 @@ button {
 }
 
 .dark .q_links h3 {
-  color: #799fe2;
+  color: #ff8c00;
 }
 
 .q_links ul li {

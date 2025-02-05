@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 export default function CategoryPage() {
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const perPage = 5;
+  const perPage = 9;
   const [blog, setBlog] = useState([]);
   const router = useRouter();
   const { category } = router.query;

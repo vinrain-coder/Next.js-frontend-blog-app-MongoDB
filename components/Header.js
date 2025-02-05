@@ -204,16 +204,54 @@ export default function Header() {
           <h3 className="mt-3">Topics</h3>
           <ul onClick={handleLinkClick}>
             <li>
-              <Link href="/topics/html">Html</Link>
+              <Link href="/topics/shoe-fashion-trends">
+                Shoe Fashion Trends
+              </Link>
             </li>
             <li>
-              <Link href="/about">CSS</Link>
+              <Link href="/topics/styling-tips">
+                Styling Tips & Outfit Ideas
+              </Link>
             </li>
             <li>
-              <Link href="/contact">React</Link>
+              <Link href="/topics/bags-and-accessory-guides">
+                Bag & Accessory Guides
+              </Link>
             </li>
             <li>
-              <Link href="/contact">Database</Link>
+              <Link href="/topics/footwear-care">
+                Footwear Care & Maintenance
+              </Link>
+            </li>
+            <li>
+              <Link href="/topics/clothing-and-seasonal-fashion">
+                Clothing & Seasonal Fashion
+              </Link>
+            </li>
+            <li>
+              <Link href="/topics/product-reviews-and-comparisons">
+                Product Reviews & Comparisons
+              </Link>
+            </li>
+            <li>
+              <Link href="/topics/sustainable-fashion">
+                Sustainable Fashion
+              </Link>
+            </li>
+            <li>
+              <Link href="/topics/shopping-guides">
+                Shopping Guides & Smart Buying Tips
+              </Link>
+            </li>
+            <li>
+              <Link href="/topics/influencer-style">
+                Celebrity & Influencer Style
+              </Link>
+            </li>
+            <li>
+              <Link href="/topics/fashion-industry-news">
+                Fashion Industry News
+              </Link>
             </li>
           </ul>
         </div>

@@ -2,7 +2,22 @@ import useFetchData from "@/hooks/useFetchData";
 import Head from "next/head";
 import Link from "next/link";
 import { useState } from "react";
-import { FaGithub, FaHtml5 } from "react-icons/fa";
+import {
+  FaFacebook,
+  FaInstagram,
+  FaShoePrints,
+  FaShoppingBag,
+  FaTiktok,
+  FaTshirt,
+  FaTwitter,
+  FaUserTie,
+} from "react-icons/fa";
+import { MdNewspaper, MdRateReview, MdTrendingUp } from "react-icons/md";
+import {
+  GiHandBag,
+  GiClothes,
+  GiEarthAmerica,
+} from "react-icons/gi";
 
 export default function Home() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -182,44 +197,84 @@ export default function Home() {
             <div className="topics_sec">
               <h2>Topics</h2>
               <div className="topics_list">
-                <Link href="/topics/html">
+                <Link href="/topics/shoe-fashion-trends">
                   <div className="topics">
                     <div className="flex flex-center topics_svg">
-                      <FaHtml5 />
+                      <MdTrendingUp />
                     </div>
-                    <h3>Html</h3>
+                    <h3>Shoe Fashion Trends</h3>
                   </div>
                 </Link>
-                <Link href="/topics/html">
+                <Link href="/topics/styling-tips">
                   <div className="topics">
                     <div className="flex flex-center topics_svg">
-                      <FaHtml5 />
+                      <FaTshirt />
                     </div>
-                    <h3>NextJs</h3>
+                    <h3>Styling Tips & Outfit Ideas</h3>
                   </div>
                 </Link>
-                <Link href="/topics/html">
+                <Link href="/topics/bags-and-accessory-guides">
                   <div className="topics">
                     <div className="flex flex-center topics_svg">
-                      <FaHtml5 />
+                      <GiHandBag />
                     </div>
-                    <h3>Database</h3>
+                    <h3>Bag & Accessory Guides</h3>
                   </div>
                 </Link>
-                <Link href="/topics/html">
+                <Link href="/topics/footwear-care">
                   <div className="topics">
                     <div className="flex flex-center topics_svg">
-                      <FaHtml5 />
+                      <FaShoePrints />
                     </div>
-                    <h3>React</h3>
+                    <h3>Footwear Care & Maintenance</h3>
                   </div>
                 </Link>
-                <Link href="/topics/html">
+                <Link href="/topics/clothing-and-seasonal-fashion">
                   <div className="topics">
                     <div className="flex flex-center topics_svg">
-                      <FaHtml5 />
+                      <GiClothes />
                     </div>
-                    <h3>Deployment</h3>
+                    <h3>Clothing & Seasonal Fashion </h3>
+                  </div>
+                </Link>
+                <Link href="/topics/product-reviews-and comparisons">
+                  <div className="topics">
+                    <div className="flex flex-center topics_svg">
+                      <MdRateReview />
+                    </div>
+                    <h3>Product Reviews & Comparisons </h3>
+                  </div>
+                </Link>
+                <Link href="/topics/sustainable-fashion">
+                  <div className="topics">
+                    <div className="flex flex-center topics_svg">
+                      <GiEarthAmerica />
+                    </div>
+                    <h3>Sustainable Fashion </h3>
+                  </div>
+                </Link>
+                <Link href="/topics/shopping-guides">
+                  <div className="topics">
+                    <div className="flex flex-center topics_svg">
+                      <FaShoppingBag />
+                    </div>
+                    <h3>Shopping Guides & Smart Buying Tips </h3>
+                  </div>
+                </Link>
+                <Link href="/topics/influencer-style">
+                  <div className="topics">
+                    <div className="flex flex-center topics_svg">
+                      <FaUserTie />
+                    </div>
+                    <h3>Celebrity & Influencer Style</h3>
+                  </div>
+                </Link>
+                <Link href="/topics/fashion-industry-news">
+                  <div className="topics">
+                    <div className="flex flex-center topics_svg">
+                      <MdNewspaper />
+                    </div>
+                    <h3>Fashion Industry News</h3>
                   </div>
                 </Link>
               </div>
@@ -227,32 +282,47 @@ export default function Home() {
             <div className="tags_sec mt-3">
               <h2>Tags</h2>
               <div className="tags_list">
-                <Link href="/tag/html">#html</Link>
-                <Link href="/tag/html">#html</Link>
-                <Link href="/tag/html">#html</Link>
-                <Link href="/tag/html">#html</Link>
-                <Link href="/tag/html">#html</Link>
-                <Link href="/tag/html">#html</Link>
-                <Link href="/tag/html">#html</Link>
-                <Link href="/tag/html">#html</Link>
+                <Link href="/tag/shoe-trends">#Shoe Trends</Link>
+                <Link href="/tag/outfit-inspiration">#Outfit Inspiration</Link>
+                <Link href="/tag/best-sneakers">#Best Sneakers</Link>
+                <Link href="/tag/luxury-footwear">#Luxury Footwear</Link>
+                <Link href="/tag/eco-friendly-fashion">
+                  #Eco-Friendly Fashion
+                </Link>
+                <Link href="/tag/must-have-accessories">
+                  #Must-Have Accessories
+                </Link>
+                <Link href="/tag/street-style">#Street Style </Link>
+                <Link href="/tag/seasonal-looks">#Seasonal Looks</Link>
+                <Link href="/tag/shoecare-tips">#Shoe Care Tips</Link>
+                <Link href="/tag/budget-shopping">#Budget Shopping</Link>
+                <Link href="/tag/fashion-hacks">#Fashion Hacks</Link>
+                <Link href="/tag/statement-shoes">#Statement Shoes</Link>
+                <Link href="/tag/wardrobe-essentials">
+                  #Wardrobe Essentials
+                </Link>
+                <Link href="/tag/trending-bags">#Trending Bags</Link>
+                <Link href="/tag/style-icons">#Style Icons</Link>
               </div>
             </div>
             <div className="letstalk_sec mt-3">
-              <h2>Let's talk</h2>
+              <h2>Let’s Step Up Your Style!</h2>
               <div className="talk_sec">
-                <h4>Want to find out how i can resolve your problems?</h4>
+                <h4>
+                  Want the latest trends, styling tips & exclusive updates?
+                </h4>
                 <div className="social_talks flex flex-center gap-1 mt-2">
                   <div className="st_icon">
-                    <FaGithub />
+                    <FaFacebook />
                   </div>
                   <div className="st_icon">
-                    <FaGithub />
+                    <FaInstagram />
                   </div>
                   <div className="st_icon">
-                    <FaGithub />
+                    <FaTwitter />
                   </div>
                   <div className="st_icon">
-                    <FaGithub />
+                    <FaTiktok />
                   </div>
                 </div>
               </div>
@@ -261,5 +331,5 @@ export default function Home() {
         </div>
       </section>
     </>
-  )
+  );
 }

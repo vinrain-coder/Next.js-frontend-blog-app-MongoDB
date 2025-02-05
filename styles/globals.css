@@ -390,7 +390,7 @@ button {
 .navlist_mobile {
   position: fixed;
   top: 0;
-  right: -375px;
+  right: 0;
   min-width: 375px;
   max-width: 375px;
   height: 100vh;
@@ -398,7 +398,12 @@ button {
   color: #fff;
   padding: 2rem;
   z-index: 9999;
-  transition: 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(100%); 
+}
+
+.navlist_mobile.open {
+  transform: translateX(0); 
 }
 
 .navlist_mobile.open {

@@ -16,8 +16,8 @@ import { MdNewspaper, MdRateReview, MdTrendingUp } from "react-icons/md";
 import {
   GiHandBag,
   GiClothes,
-  GiEarthAmerica,
 } from "react-icons/gi";
+import { FaEarthAfrica } from "react-icons/fa6";
 
 export default function Home() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -248,7 +248,7 @@ export default function Home() {
                 <Link href="/topics/sustainable-fashion">
                   <div className="topics">
                     <div className="flex flex-center topics_svg">
-                      <GiEarthAmerica />
+                      <FaEarthAfrica />
                     </div>
                     <h3>Sustainable Fashion </h3>
                   </div>

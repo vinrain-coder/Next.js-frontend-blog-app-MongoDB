@@ -12,6 +12,7 @@ import {
   FaTwitter,
   FaUserTie,
 } from "react-icons/fa";
+import { FaEarthAfrica } from "react-icons/fa6";
 import { GiClothes, GiHandBag } from "react-icons/gi";
 import { MdNewspaper, MdRateReview, MdTrendingUp } from "react-icons/md";
 import ReactMarkdown from "react-markdown";
@@ -231,7 +232,7 @@ export default function blogPage() {
                   <Link href="/topics/sustainable-fashion">
                     <div className="topics">
                       <div className="flex flex-center topics_svg">
-                        <GiEarthAmerica />
+                        <FaEarthAfrica />
                       </div>
                       <h3>Sustainable Fashion </h3>
                     </div>

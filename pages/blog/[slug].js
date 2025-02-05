@@ -20,7 +20,7 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { allyDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import remarkGfm from "remark-gfm";
 
-export default function blogPage() {
+export default function BlogPage() {
   const router = useRouter();
   const { slug } = router.query;
 
@@ -42,14 +42,13 @@ export default function blogPage() {
     }
   }, [slug]);
 
-  // markdown code highlighter
+  // Markdown code highlighter
   const Code = ({ node, inline, className, children, ...props }) => {
     const match = /language-(\w+)/.exec(className || "");
-
-    const [copied, setCopied] = useState();
+    const [copied, setCopied] = useState(false);
 
     const handleCopy = () => {
-      navigator.clipboard.writeText(children);
+      navigator.clipboard.writeText(children.join(""));
       setCopied(true);
       setTimeout(() => {
         setCopied(false);
@@ -57,10 +56,10 @@ export default function blogPage() {
     };
 
     if (inline) {
-      return <code>{children}</code>;
+      return <code className="bg-gray-200 px-1 rounded">{children}</code>;
     } else if (match) {
       return (
-        <div style={{ position: "relative" }}>
+        <div className="relative">
           <SyntaxHighlighter
             style={allyDark}
             language={match[1]}
@@ -75,31 +74,35 @@ export default function blogPage() {
               },
             }}
           >
-            {String(children).replace(/\n&/, "")}
+            {String(children)}
           </SyntaxHighlighter>
           <button
-            style={{
-              position: "absolute",
-              top: "0",
-              right: "0",
-              zIndex: "1",
-              background: "#3d3d3d",
-              color: "#fff",
-              padding: "10px",
-            }}
+            className="absolute top-2 right-2 bg-gray-800 text-white px-2 py-1 rounded"
             onClick={handleCopy}
           >
-            {copied ? "Copied" : "Copy code"}
+            {copied ? "Copied" : "Copy"}
           </button>
         </div>
       );
     } else {
-      return (
-        <code className="md-post-code" {...props}>
-          {children}
-        </code>
-      );
+      return <code className="md-post-code">{children}</code>;
     }
+  };
+
+  // Styled table components for markdown
+  const components = {
+    code: Code,
+    table: ({ children }) => (
+      <table className="border-collapse border border-gray-300 w-full my-4">
+        {children}
+      </table>
+    ),
+    th: ({ children }) => (
+      <th className="border border-gray-400 bg-gray-200 px-3 py-2">{children}</th>
+    ),
+    td: ({ children }) => (
+      <td className="border border-gray-300 px-3 py-2">{children}</td>
+    ),
   };
 
   return (
@@ -129,26 +132,19 @@ export default function blogPage() {
               <span>. 1 min read</span>
             </h5>
           </div>
-          {/* blog data section */}
+          {/* Blog data section */}
           <div className="flex flex-sb flex-left pb-5 flex-wrap">
             <div className="leftblog_data_markdown">
               {loading ? (
-                <div className="wh-100  flex flex-center mt-3">
+                <div className="wh-100 flex flex-center mt-3">
                   <div className="loader"></div>
                 </div>
               ) : (
-                <>
-                  <div className="w-100 blogcontent">
-                    <ReactMarkdown
-                      remarkPlugins={[remarkGfm]}
-                      components={{
-                        code: Code,
-                      }}
-                    >
-                      {blog[0].description}
-                    </ReactMarkdown>
-                  </div>
-                </>
+                <div className="w-100 blogcontent">
+                  <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>
+                    {blog[0].description}
+                  </ReactMarkdown>
+                </div>
               )}
             </div>
             <div className="rightslug_data">
@@ -205,90 +201,23 @@ export default function blogPage() {
                       <h3>Bag & Accessory Guides</h3>
                     </div>
                   </Link>
-                  <Link href="/topics/footwear-care">
-                    <div className="topics">
-                      <div className="flex flex-center topics_svg">
-                        <FaShoePrints />
-                      </div>
-                      <h3>Footwear Care & Maintenance</h3>
-                    </div>
-                  </Link>
-                  <Link href="/topics/clothing-and-seasonal-fashion">
-                    <div className="topics">
-                      <div className="flex flex-center topics_svg">
-                        <GiClothes />
-                      </div>
-                      <h3>Clothing & Seasonal Fashion </h3>
-                    </div>
-                  </Link>
-                  <Link href="/topics/product-reviews-and comparisons">
-                    <div className="topics">
-                      <div className="flex flex-center topics_svg">
-                        <MdRateReview />
-                      </div>
-                      <h3>Product Reviews & Comparisons </h3>
-                    </div>
-                  </Link>
-                  <Link href="/topics/sustainable-fashion">
-                    <div className="topics">
-                      <div className="flex flex-center topics_svg">
-                        <FaEarthAfrica />
-                      </div>
-                      <h3>Sustainable Fashion </h3>
-                    </div>
-                  </Link>
-                  <Link href="/topics/shopping-guides">
-                    <div className="topics">
-                      <div className="flex flex-center topics_svg">
-                        <FaShoppingBag />
-                      </div>
-                      <h3>Shopping Guides & Smart Buying Tips </h3>
-                    </div>
-                  </Link>
-                  <Link href="/topics/influencer-style">
-                    <div className="topics">
-                      <div className="flex flex-center topics_svg">
-                        <FaUserTie />
-                      </div>
-                      <h3>Celebrity & Influencer Style</h3>
-                    </div>
-                  </Link>
-                  <Link href="/topics/fashion-industry-news">
-                    <div className="topics">
-                      <div className="flex flex-center topics_svg">
-                        <MdNewspaper />
-                      </div>
-                      <h3>Fashion Industry News</h3>
-                    </div>
-                  </Link>
                 </div>
               </div>
               <div className="tags_sec mt-3">
                 <h2>Tags</h2>
                 <div className="tags_list">
                   <Link href="/tag/shoe-trends">#Shoe Trends</Link>
-                  <Link href="/tag/outfit-inspiration">
-                    #Outfit Inspiration
-                  </Link>
+                  <Link href="/tag/outfit-inspiration">#Outfit Inspiration</Link>
                   <Link href="/tag/best-sneakers">#Best Sneakers</Link>
                   <Link href="/tag/luxury-footwear">#Luxury Footwear</Link>
-                  <Link href="/tag/eco-friendly-fashion">
-                    #Eco-Friendly Fashion
-                  </Link>
-                  <Link href="/tag/must-have-accessories">
-                    #Must-Have Accessories
-                  </Link>
-                  <Link href="/tag/street-style">#Street Style </Link>
+                  <Link href="/tag/eco-friendly-fashion">#Eco-Friendly Fashion</Link>
+                  <Link href="/tag/must-have-accessories">#Must-Have Accessories</Link>
+                  <Link href="/tag/street-style">#Street Style</Link>
                   <Link href="/tag/seasonal-looks">#Seasonal Looks</Link>
                   <Link href="/tag/shoecare-tips">#Shoe Care Tips</Link>
                   <Link href="/tag/budget-shopping">#Budget Shopping</Link>
                   <Link href="/tag/fashion-hacks">#Fashion Hacks</Link>
                   <Link href="/tag/statement-shoes">#Statement Shoes</Link>
-                  <Link href="/tag/wardrobe-essentials">
-                    #Wardrobe Essentials
-                  </Link>
-                  <Link href="/tag/trending-bags">#Trending Bags</Link>
-                  <Link href="/tag/style-icons">#Style Icons</Link>
                 </div>
               </div>
             </div>

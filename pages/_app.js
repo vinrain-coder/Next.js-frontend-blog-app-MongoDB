@@ -12,7 +12,7 @@ export default function App({ Component, pageProps }) {
       <TopLoadingLine />
       <main>
         <Aos>
-          <Component {...pageProps} />;
+          <Component {...pageProps} />
         </Aos>
         <ScrollToTopBtn />
       </main>
